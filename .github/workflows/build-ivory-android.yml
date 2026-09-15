@@ -47,11 +47,11 @@ jobs:
 
       - name: Build IVORY Android ARM64 release
         working-directory: native/ivory
-        run: scons platform=android arch=arm64 target=template_release -j2
+        run: scons platform=android arch=arm64 target=template_release ndk_version=27.2.12479018 -j2
 
       - name: Build IVORY Android ARM64 debug
         working-directory: native/ivory
-        run: scons platform=android arch=arm64 target=template_debug -j2
+        run: scons platform=android arch=arm64 target=template_debug ndk_version=27.2.12479018 -j2
 
       - name: Validate native outputs and GDExtension mapping
         run: python native/ivory/ci/validate_android_build.py
