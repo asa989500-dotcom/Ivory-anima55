@@ -1,0 +1,4 @@
+native/ivory/src/ivory_comic.cpp: In member function 'int godot::IvoryComic::split_by_shape(int, const godot::Rect2&, const godot::PackedVector2Array&, double)':
+native/ivory/src/ivory_comic.cpp:510:43: warning: unused parameter 'points' [-Wunused-parameter]
+  510 |                 const PackedVector2Array &points, double gutter) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~

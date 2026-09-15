@@ -1,0 +1,64 @@
+# Godot
+.godot/
+*.import
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Ignore generated compile_commands.json
+compile_commands.json
+.scons-cache
+
+# Binaries
+*.o
+*.os
+*.so
+*.so.*
+*.obj
+*.bc
+*.pyc
+*.dblite
+*.pdb
+*.lib
+*.config
+*.creator
+*.creator.user
+*.files
+*.includes
+*.idb
+*.exp
+*.dll
+*.exe
+*.dylib
+
+# Video files
+*.mp4
+*.mxf
+*.mpg
+*.webm
+*.mkv
+*.mjpg
+*.mts
+*.MTS
+*.mov
+
+# Other stuff
+*.log
+.cache
+.clang-format
+ffmpeg_bin/
+test_exports/
+
+*.tar.gz
+*.zip
+ffmpeg_examples
+
+test_room/addons/gde_gozen/bin/web
+test_room/addons/gde_gozen/bin/linux*
+test_room/addons/gde_gozen/bin/windows*
+test_room/addons/gde_gozen/bin/macos*
+
+# C# Stuff
+.idea/
+.qodo/
+/libressl-3.9.2

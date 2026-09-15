@@ -1,0 +1,18 @@
+--- smart bone dials ---
+keys are hit exactly
+key weights are a partition of unity
+past the ends it holds, it does not run away
+with overshoot off, nothing leaves the bracket
+with overshoot on, it overshoots but stays sane
+the correction is smooth, with no step at a key
+a dial may not drive its own driver
+two dials on one bone multiply, they do not average
+a stretch is held above nothing
+re-posing at the same angle replaces, it does not stack
+removing a dial does not renumber the others
+saving and loading gives back the same dial
+a file with keys out of order still resolves
+nothing at all is answered calmly
+thirty dials resolve in front of a finger
+point offsets follow the same weights as bone turns
+2003 checks, 0 failures

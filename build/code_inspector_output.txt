@@ -1,0 +1,30 @@
+IVORY CODE INSPECTOR
+========================================================================
+[INFO] native/ivory/src/ivory_character360.cpp:1 — native file uses godot-cpp; namespace qualification should remain explicit or intentional
+[INFO] native/ivory/src/ivory_jigglephysics.cpp:1 — native file uses godot-cpp; namespace qualification should remain explicit or intentional
+[WARN] scripts/anim_player.gd:161 — literal integer division may discard the decimal part
+[WARN] scripts/brush_library.gd:751 — literal integer division may discard the decimal part
+[WARN] scripts/canvas_view.gd:478 — literal integer division may discard the decimal part
+[WARN] scripts/canvas_view.gd:794 — literal integer division may discard the decimal part
+[WARN] scripts/canvas_view.gd:2507 — literal integer division may discard the decimal part
+[WARN] scripts/curve_walk.gd:60 — literal integer division may discard the decimal part
+[WARN] scripts/curve_walk.gd:61 — literal integer division may discard the decimal part
+[WARN] scripts/curve_walk.gd:62 — literal integer division may discard the decimal part
+[WARN] scripts/exporters.gd:848 — literal integer division may discard the decimal part
+[WARN] scripts/main.gd:1592 — literal integer division may discard the decimal part
+[WARN] scripts/mp4_export.gd:234 — literal integer division may discard the decimal part
+[WARN] scripts/oklab.gd:32 — literal integer division may discard the decimal part
+[WARN] scripts/oklab.gd:36 — literal integer division may discard the decimal part
+[WARN] scripts/oklab.gd:37 — literal integer division may discard the decimal part
+[WARN] scripts/stroke_smoother.gd:77 — literal integer division may discard the decimal part
+[WARN] scripts/ui/bone_room.gd:513 — literal integer division may discard the decimal part
+[WARN] scripts/ui/bspline_room.gd:546 — literal integer division may discard the decimal part
+[WARN] scripts/ui/timeline_panel.gd:720 — literal integer division may discard the decimal part
+[WARN] scripts/webp_anim.gd:138 — literal integer division may discard the decimal part
+[WARN] tests/test_ai.gd:136 — literal integer division may discard the decimal part
+[WARN] tests/test_anim.gd:44 — literal integer division may discard the decimal part
+[WARN] tests/test_anim.gd:52 — literal integer division may discard the decimal part
+[WARN] tools/check_size.py:1 — --- 3 files over their limit ---
+------------------------------------------------------------------------
+Diagnostics: 25 | errors: 0 | warnings: 23
+JSON report: build/code_inspector_report.json

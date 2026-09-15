@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+from pathlib import Path
+p=Path(__file__).resolve().parents[1]
+checks=[]
+def ck(name, cond): checks.append((name,cond))
+reg=(p/'native/ivory/src/register_types.cpp').read_text()
+nat=(p/'scripts/native.gd').read_text()
+sk=(p/'scripts/rig_skin.gd').read_text()
+rb=(p/'scripts/rig_skin.gd').read_text()
+rt=(p/'scripts/rig_track.gd').read_text()
+cpp=(p/'native/ivory/src/ivory_mass_keeper.cpp').read_text()
+ck('MassKeeper header exists',(p/'native/ivory/src/ivory_mass_keeper.h').exists())
+ck('MassKeeper source exists',(p/'native/ivory/src/ivory_mass_keeper.cpp').exists())
+ck('MassKeeper registered','GDREGISTER_CLASS(IvoryMassKeeper)' in reg)
+ck('Native accessor','ClassDB.instantiate("IvoryMassKeeper")' in nat)
+ck('Joint-local preserve wired','preserve_joint_mass' in sk)
+ck('No old broad 2.2x reach','* 2.2 + 8.0' not in sk)
+ck('Joint reach tightened','0.42 + 8.0' in sk)
+ck('Timeline native progress bound','key_progress' in (p/'native/ivory/src/ivory_animation.cpp').read_text())
+ck('RigTrack uses native progress','native_anim.call("key_progress"' in rt)
+ck('Weight cap 2 default','max_influences = std::clamp(max_influences, 1, 8)' in cpp)
+ck('Weights reject nonfinite','!std::isfinite(w)' in cpp)
+ck('Stretch guard present','within_stretch' in cpp)
+ck('Triangle inspection present','"folded_like"' in cpp)
+ck('Native unit test exists',(p/'native/ivory/tests/test_mass_keeper.cpp').exists())
+ck('Runner includes mass test','run test_mass_keeper ivory_mass_keeper' in (p/'tools/run_native_tests.sh').read_text())
+print(f'Mass/Bone/Timeline structural checks: {len(checks)} checks, {sum(not v for _,v in checks)} failures')
+for n,v in checks:
+    if not v: print('FAIL:',n)
+raise SystemExit(0 if all(v for _,v in checks) else 1)

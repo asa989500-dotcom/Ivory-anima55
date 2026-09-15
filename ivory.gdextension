@@ -1,0 +1,24 @@
+[configuration]
+
+entry_symbol = "ivory_library_init"
+compatibility_minimum = "4.2"
+
+; Optional by design. Godot logs a line when a library file is missing and
+; carries on, and `scripts/native.gd` then finds no `IvoryWarp` class and uses
+; the GDScript that was already doing the job. So a checkout with no `bin/`
+; runs, and a partial build — one platform done, the rest not — runs too.
+
+[libraries]
+
+linux.debug.x86_64   = "res://bin/libivory.linux.template_debug.x86_64.so"
+linux.release.x86_64 = "res://bin/libivory.linux.template_release.x86_64.so"
+windows.debug.x86_64   = "res://bin/libivory.windows.template_debug.x86_64.dll"
+windows.release.x86_64 = "res://bin/libivory.windows.template_release.x86_64.dll"
+macos.debug   = "res://bin/libivory.macos.template_debug.framework"
+macos.release = "res://bin/libivory.macos.template_release.framework"
+android.debug.arm64   = "res://bin/libivory.android.template_debug.arm64.so"
+android.release.arm64 = "res://bin/libivory.android.template_release.arm64.so"
+android.debug.arm32   = "res://bin/libivory.android.template_debug.arm32.so"
+android.release.arm32 = "res://bin/libivory.android.template_release.arm32.so"
+ios.debug   = "res://bin/libivory.ios.template_debug.framework"
+ios.release = "res://bin/libivory.ios.template_release.framework"

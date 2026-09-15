@@ -1,0 +1,157 @@
+{
+  "root": "/mnt/data/ivory_work/stage177_work",
+  "errors": 0,
+  "warnings": 23,
+  "diagnostics": [
+    {
+      "level": "INFO",
+      "path": "native/ivory/src/ivory_character360.cpp",
+      "line": 1,
+      "message": "native file uses godot-cpp; namespace qualification should remain explicit or intentional"
+    },
+    {
+      "level": "INFO",
+      "path": "native/ivory/src/ivory_jigglephysics.cpp",
+      "line": 1,
+      "message": "native file uses godot-cpp; namespace qualification should remain explicit or intentional"
+    },
+    {
+      "level": "WARN",
+      "path": "scripts/anim_player.gd",
+      "line": 161,
+      "message": "literal integer division may discard the decimal part"
+    },
+    {
+      "level": "WARN",
+      "path": "scripts/brush_library.gd",
+      "line": 751,
+      "message": "literal integer division may discard the decimal part"
+    },
+    {
+      "level": "WARN",
+      "path": "scripts/canvas_view.gd",
+      "line": 478,
+      "message": "literal integer division may discard the decimal part"
+    },
+    {
+      "level": "WARN",
+      "path": "scripts/canvas_view.gd",
+      "line": 794,
+      "message": "literal integer division may discard the decimal part"
+    },
+    {
+      "level": "WARN",
+      "path": "scripts/canvas_view.gd",
+      "line": 2507,
+      "message": "literal integer division may discard the decimal part"
+    },
+    {
+      "level": "WARN",
+      "path": "scripts/curve_walk.gd",
+      "line": 60,
+      "message": "literal integer division may discard the decimal part"
+    },
+    {
+      "level": "WARN",
+      "path": "scripts/curve_walk.gd",
+      "line": 61,
+      "message": "literal integer division may discard the decimal part"
+    },
+    {
+      "level": "WARN",
+      "path": "scripts/curve_walk.gd",
+      "line": 62,
+      "message": "literal integer division may discard the decimal part"
+    },
+    {
+      "level": "WARN",
+      "path": "scripts/exporters.gd",
+      "line": 848,
+      "message": "literal integer division may discard the decimal part"
+    },
+    {
+      "level": "WARN",
+      "path": "scripts/main.gd",
+      "line": 1592,
+      "message": "literal integer division may discard the decimal part"
+    },
+    {
+      "level": "WARN",
+      "path": "scripts/mp4_export.gd",
+      "line": 234,
+      "message": "literal integer division may discard the decimal part"
+    },
+    {
+      "level": "WARN",
+      "path": "scripts/oklab.gd",
+      "line": 32,
+      "message": "literal integer division may discard the decimal part"
+    },
+    {
+      "level": "WARN",
+      "path": "scripts/oklab.gd",
+      "line": 36,
+      "message": "literal integer division may discard the decimal part"
+    },
+    {
+      "level": "WARN",
+      "path": "scripts/oklab.gd",
+      "line": 37,
+      "message": "literal integer division may discard the decimal part"
+    },
+    {
+      "level": "WARN",
+      "path": "scripts/stroke_smoother.gd",
+      "line": 77,
+      "message": "literal integer division may discard the decimal part"
+    },
+    {
+      "level": "WARN",
+      "path": "scripts/ui/bone_room.gd",
+      "line": 513,
+      "message": "literal integer division may discard the decimal part"
+    },
+    {
+      "level": "WARN",
+      "path": "scripts/ui/bspline_room.gd",
+      "line": 546,
+      "message": "literal integer division may discard the decimal part"
+    },
+    {
+      "level": "WARN",
+      "path": "scripts/ui/timeline_panel.gd",
+      "line": 720,
+      "message": "literal integer division may discard the decimal part"
+    },
+    {
+      "level": "WARN",
+      "path": "scripts/webp_anim.gd",
+      "line": 138,
+      "message": "literal integer division may discard the decimal part"
+    },
+    {
+      "level": "WARN",
+      "path": "tests/test_ai.gd",
+      "line": 136,
+      "message": "literal integer division may discard the decimal part"
+    },
+    {
+      "level": "WARN",
+      "path": "tests/test_anim.gd",
+      "line": 44,
+      "message": "literal integer division may discard the decimal part"
+    },
+    {
+      "level": "WARN",
+      "path": "tests/test_anim.gd",
+      "line": 52,
+      "message": "literal integer division may discard the decimal part"
+    },
+    {
+      "level": "WARN",
+      "path": "tools/check_size.py",
+      "line": 1,
+      "message": "--- 3 files over their limit ---"
+    }
+  ]
+}

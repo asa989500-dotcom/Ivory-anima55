@@ -1,0 +1,28 @@
+#!/usr/bin/env python
+import os
+
+# godot-cpp is vendored in this project.
+# The extension targets Godot API 4.7.
+
+env = SConscript("godot-cpp/SConstruct", {"api_version": "4.7"})
+
+env.Append(CPPPATH=["src/"])
+sources = Glob("src/*.cpp")
+
+suffix = env["suffix"]
+shlib_suffix = env["SHLIBSUFFIX"]
+
+if env["platform"] == "macos":
+    library = env.SharedLibrary(
+        "../../bin/libivory.{}.{}.framework/libivory.{}.{}".format(
+            env["platform"], env["target"], env["platform"], env["target"]
+        ),
+        source=sources,
+    )
+else:
+    library = env.SharedLibrary(
+        "../../bin/libivory{}{}".format(suffix, shlib_suffix),
+        source=sources,
+    )
+
+Default(library)

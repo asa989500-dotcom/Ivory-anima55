@@ -1,0 +1,9 @@
+[configuration]
+entry_symbol = "ivory_library_init"
+compatibility_minimum = "4.2"
+
+; Source-checkout safety manifest.
+; Native libraries are intentionally not named here until they have actually
+; been built for the current platform/architecture. GDScript fallbacks remain
+; fully functional and scripts/native.gd detects native classes dynamically.
+[libraries]

@@ -1,0 +1,17 @@
+
+Character 360 Ultra Finger/Rig regression
+==========================================
+
+five fingers: topology, limits, and lengths
+finger FK: no drift under repeated posing
+touch IK: endpoint follows target without changing bone lengths
+touch picking: posed finger is selectable
+motion layer is explicit and isolated
+finger smart bone: monotone correction
+performance: 200k finger pose solves
+  stress_ms=41.223
+export integrity: rest/pose/parts survive
+extreme touch targets stay finite and constrained
+two hands: independent complete rigs
+
+70 checks, 0 failures

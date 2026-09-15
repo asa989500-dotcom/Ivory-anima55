@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Nothing is declared here on purpose.
+
+         Encoding, muxing and MediaStore all work without a permission on
+         every Android this plugin supports: the video is written to the
+         app's own folder and then handed to MediaStore, which is exactly the
+         path that does not need WRITE_EXTERNAL_STORAGE.
+
+         Reading a sound file the user picked is likewise covered by the
+         picker's own grant. Declaring permissions that are not needed is how
+         an app fails a Play review. -->
+</manifest>

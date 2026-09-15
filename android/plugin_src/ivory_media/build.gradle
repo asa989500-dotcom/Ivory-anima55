@@ -1,0 +1,40 @@
+// The IVORY media plugin: H.264/AAC encoding, audio decoding and gallery
+// publishing, all through Android's own MediaCodec.
+//
+// This module produces one .aar. It has no dependencies beyond the Godot
+// Android library the engine already ships, which is the whole point — there
+// is nothing here to cross-compile and nothing to vendor.
+
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    namespace 'com.aaje.ivory.media'
+    compileSdk 34
+
+    defaultConfig {
+        // 24 matches IVORY's own floor. MediaCodec and MediaMuxer have both
+        // been there since 18 and 21, so nothing here raises it.
+        minSdk 24
+        targetSdk 34
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    libraryVariants.all { variant ->
+        variant.outputs.all { output ->
+            outputFileName = "ivory_media.${variant.name}.aar"
+        }
+    }
+}
+
+dependencies {
+    // Supplied by the engine at runtime, so it is compiled against and not
+    // packaged — two copies of the Godot library in one APK will not link.
+    compileOnly fileTree(dir: "${projectDir}/../libs", include: ['*.jar', '*.aar'])
+    compileOnly 'androidx.annotation:annotation:1.7.1'
+}

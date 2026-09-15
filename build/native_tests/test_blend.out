@@ -1,0 +1,14 @@
+
+the colour blend tool
+=====================
+
+round 1 — the colour space
+round 2 — what halfway between two colours looks like
+round 3 — the brush shape governs the mix
+round 4 — each mode doing what its name says
+round 5 — transparency, and the fringe
+round 6 — strength, repetition, and where it settles
+round 7 — abuse
+
+57 checks, 0 failures
+

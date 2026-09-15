@@ -1,0 +1,159 @@
+--- 0 indentation problems ---
+--- 0 constants that are not constant ---
+--- 0 undeclared identifiers ---
+--- 0 unresolved names in 89 plain classes, 0 unused parameters, 0 dead members ---
+--- 0 calls to methods that do not exist, in 114 classes ---
+--- 0 compiler warnings waiting to happen, in 136 files ---
+--- 0 impossible returns ---
+--- 0 suspect continuations ---
+--- 0 redeclarations ---
+--- 0 lambdas writing to a captured local, in 136 files ---
+--- 0 uninferable declarations ---
+--- 0 class names hiding a native class ---
+--- 0 unresolved references
+ok    native/ivory/src/ivory_animation.cpp
+ok    native/ivory/src/ivory_animation_launcher.cpp
+FAIL: native/ivory/src/ivory_animation_workspace_picker.cpp
+In file included from /mnt/data/ivory_work/stage177_work/native/ivory/src/ivory_animation_workspace_picker.cpp:1:
+/mnt/data/ivory_work/stage177_work/native/ivory/src/ivory_animation_workspace_picker.h:4:10: fatal error: godot_cpp/classes/panel_container.hpp: No such file or directory
+    4 | #include <godot_cpp/classes/panel_container.hpp>
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+ok    native/ivory/src/ivory_arap.cpp
+ok    native/ivory/src/ivory_arbiter.cpp
+ok    native/ivory/src/ivory_blend.cpp
+ok    native/ivory/src/ivory_bone.cpp
+ok    native/ivory/src/ivory_bonepose.cpp
+ok    native/ivory/src/ivory_brush.cpp
+ok    native/ivory/src/ivory_canvas.cpp
+ok    native/ivory/src/ivory_character360.cpp
+ok    native/ivory/src/ivory_character360_rig.cpp
+ok    native/ivory/src/ivory_comic.cpp
+ok    native/ivory/src/ivory_diagnostics.cpp
+FAIL: native/ivory/src/ivory_distort.cpp
+/mnt/data/ivory_work/stage177_work/native/ivory/src/ivory_distort.cpp:2:10: fatal error: godot_cpp/variant/math.hpp: No such file or directory
+    2 | #include <godot_cpp/variant/math.hpp>
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+ok    native/ivory/src/ivory_field.cpp
+ok    native/ivory/src/ivory_guard20.cpp
+ok    native/ivory/src/ivory_jigglephysics.cpp
+ok    native/ivory/src/ivory_lang.cpp
+ok    native/ivory/src/ivory_layout.cpp
+ok    native/ivory/src/ivory_mass_keeper.cpp
+ok    native/ivory/src/ivory_meshforge.cpp
+ok    native/ivory/src/ivory_pose.cpp
+ok    native/ivory/src/ivory_pose_deformer.cpp
+ok    native/ivory/src/ivory_rig360.cpp
+ok    native/ivory/src/ivory_rigcore.cpp
+ok    native/ivory/src/ivory_selection_guard.cpp
+ok    native/ivory/src/ivory_skin.cpp
+ok    native/ivory/src/ivory_smartbone.cpp
+ok    native/ivory/src/ivory_spline.cpp
+ok    native/ivory/src/ivory_store.cpp
+FAIL: native/ivory/src/ivory_stretchy_canvas_picker.cpp
+In file included from /mnt/data/ivory_work/stage177_work/native/ivory/src/ivory_stretchy_canvas_picker.cpp:1:
+/mnt/data/ivory_work/stage177_work/native/ivory/src/ivory_stretchy_canvas_picker.h:4:10: fatal error: godot_cpp/classes/panel_container.hpp: No such file or directory
+    4 | #include <godot_cpp/classes/panel_container.hpp>
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+FAIL: native/ivory/src/ivory_stretchy_document.cpp
+/mnt/data/ivory_work/stage177_work/native/ivory/src/ivory_stretchy_document.cpp: In member function ‘godot::Dictionary godot::IvoryStretchyDocument::create_document() const’:
+/mnt/data/ivory_work/stage177_work/native/ivory/src/ivory_stretchy_document.cpp:42:111: error: no matching function for call to ‘godot::Dictionary::Dictionary(<brace-enclosed initializer list>)’
+   42 |         Dictionary({{"id", "ParamAngleX"}, {"name", "Angle X"}, {"min", -30.0}, {"max", 30.0}, {"value", 0.0}}),
+      |                                                                                                               ^
+In file included from native/stub/godot_cpp/classes/ref_counted.hpp:2,
+                 from /mnt/data/ivory_work/stage177_work/native/ivory/src/ivory_stretchy_document.h:4,
+                 from /mnt/data/ivory_work/stage177_work/native/ivory/src/ivory_stretchy_document.cpp:1:
+native/stub/godot_cpp/variant/all.hpp:396:8: note: candidate: ‘constexpr godot::Dictionary::Dictionary()’
+  396 | struct Dictionary {
+      |        ^~~~~~~~~~
+native/stub/godot_cpp/variant/all.hpp:396:8: note:   candidate expects 0 arguments, 1 provided
+native/stub/godot_cpp/variant/all.hpp:396:8: note: candidate: ‘godot::Dictionary::Dictionary(const godot::Dictionary&)’
+native/stub/godot_cpp/variant/all.hpp:396:8: note:   no known conversion for argument 1 from ‘<brace-enclosed initializer list>’ to ‘const godot::Dictionary&’
+native/stub/godot_cpp/variant/all.hpp:396:8: note: candidate: ‘godot::Dictionary::Dictionary(godot::Dictionary&&)’
+native/stub/godot_cpp/variant/all.hpp:396:8: note:   no known conversion for argument 1 from ‘<brace-enclosed initializer list>’ to ‘godot::Dictionary&&’
+/mnt/data/ivory_work/stage177_work/native/ivory/src/ivory_stretchy_document.cpp:43:111: error: no matching function for call to ‘godot::Dictionary::Dictionary(<brace-enclosed initializer list>)’
+   43 |         Dictionary({{"id", "ParamAngleY"}, {"name", "Angle Y"}, {"min", -30.0}, {"max", 30.0}, {"value", 0.0}}),
+      |                                                                                                               ^
+native/stub/godot_cpp/variant/all.hpp:396:8: note: candidate: ‘constexpr godot::Dictionary::Dictionary()’
+  396 | struct Dictionary {
+      |        ^~~~~~~~~~
+native/stub/godot_cpp/variant/all.hpp:396:8: note:   candidate expects 0 arguments, 1 provided
+native/stub/godot_cpp/variant/all.hpp:396:8: note: candidate: ‘godot::Dictionary::Dictionary(const godot::Dictionary&)’
+native/stub/godot_cpp/variant/all.hpp:396:8: note:   no known conversion for argument 1 from ‘<brace-enclosed initializer list>’ to ‘const godot::Dictionary&’
+native/stub/godot_cpp/variant/all.hpp:396:8: note: candidate: ‘godot::Dictionary::Dictionary(godot::Dictionary&&)’
+native/stub/godot_cpp/variant/all.hpp:396:8: note:   no known conversion for argument 1 from ‘<brace-enclosed initializer list>’ to ‘godot::Dictionary&&’
+/mnt/data/ivory_work/stage177_work/native/ivory/src/ivory_stretchy_document.cpp:44:115: error: no matching function for call to ‘godot::Dictionary::Dictionary(<brace-enclosed initializer list>)’
+   44 |         Dictionary({{"id", "ParamMouthOpenY"}, {"name", "Mouth open"}, {"min", 0.0}, {"max", 1.0}, {"value", 0.0}}),
+      |                                                                                                                   ^
+native/stub/godot_cpp/variant/all.hpp:396:8: note: candidate: ‘constexpr godot::Dictionary::Dictionary()’
+  396 | struct Dictionary {
+      |        ^~~~~~~~~~
+native/stub/godot_cpp/variant/all.hpp:396:8: note:   candidate expects 0 arguments, 1 provided
+native/stub/godot_cpp/variant/all.hpp:396:8: note: candidate: ‘godot::Dictionary::Dictionary(const godot::Dictionary&)’
+native/stub/godot_cpp/variant/all.hpp:396:8: note:   no known conversion for argument 1 from ‘<brace-enclosed initializer list>’ to ‘const godot::Dictionary&’
+native/stub/godot_cpp/variant/all.hpp:396:8: note: candidate: ‘godot::Dictionary::Dictionary(godot::Dictionary&&)’
+native/stub/godot_cpp/variant/all.hpp:396:8: note:   no known conversion for argument 1 from ‘<brace-enclosed initializer list>’ to ‘godot::Dictionary&&’
+/mnt/data/ivory_work/stage177_work/native/ivory/src/ivory_stretchy_document.cpp:45:6: error: no matching function for call to ‘godot::Array::Array(<brace-enclosed initializer list>)’
+   45 |     });
+      |      ^
+native/stub/godot_cpp/variant/all.hpp:420:8: note: candidate: ‘constexpr godot::Array::Array()’
+  420 | struct Array {
+      |        ^~~~~
+native/stub/godot_cpp/variant/all.hpp:420:8: note:   candidate expects 0 arguments, 1 provided
+native/stub/godot_cpp/variant/all.hpp:420:8: note: candidate: ‘godot::Array::Array(const godot::Array&)’
+native/stub/godot_cpp/variant/all.hpp:420:8: note:   no known conversion for argument 1 from ‘<brace-enclosed initializer list>’ to ‘const godot::Array&’
+native/stub/godot_cpp/variant/all.hpp:420:8: note: candidate: ‘godot::Array::Array(godot::Array&&)’
+native/stub/godot_cpp/variant/all.hpp:420:8: note:   no known conversion for argument 1 from ‘<brace-enclosed initializer list>’ to ‘godot::Array&&’
+/mnt/data/ivory_work/stage177_work/native/ivory/src/ivory_stretchy_document.cpp:46:48: error: no matching function for call to ‘godot::Array::Array(<brace-enclosed initializer list>)’
+   46 |     out["canvas_size"] = Array({1920.0, 1080.0});
+      |                                                ^
+native/stub/godot_cpp/variant/all.hpp:420:8: note: candidate: ‘constexpr godot::Array::Array()’
+  420 | struct Array {
+      |        ^~~~~
+native/stub/godot_cpp/variant/all.hpp:420:8: note:   candidate expects 0 arguments, 1 provided
+native/stub/godot_cpp/variant/all.hpp:420:8: note: candidate: ‘godot::Array::Array(const godot::Array&)’
+native/stub/godot_cpp/variant/all.hpp:420:8: note:   no known conversion for argument 1 from ‘<brace-enclosed initializer list>’ to ‘const godot::Array&’
+native/stub/godot_cpp/variant/all.hpp:420:8: note: candidate: ‘godot::Array::Array(godot::Array&&)’
+native/stub/godot_cpp/variant/all.hpp:420:8: note:   no known conversion for argument 1 from ‘<brace-enclosed initializer list>’ to ‘godot::Array&&’
+/mnt/data/ivory_work/stage177_work/native/ivory/src/ivory_stretchy_document.cpp: In member function ‘void godot::IvoryStretchyDocument::set_document(const godot::Dictionary&)’:
+/mnt/data/ivory_work/stage177_work/native/ivory/src/ivory_stretchy_document.cpp:51:26: error: ‘const struct godot::Dictionary’ has no member named ‘duplicate’
+   51 |     document_ = document.duplicate(true);
+      |                          ^~~~~~~~~
+/mnt/data/ivory_work/stage177_work/native/ivory/src/ivory_stretchy_document.cpp: In member function ‘godot::Dictionary godot::IvoryStretchyDocument::document() const’:
+/mnt/data/ivory_work/stage177_work/native/ivory/src/ivory_stretchy_document.cpp:55:22: error: ‘const struct godot::Dictionary’ has no member named ‘duplicate’
+   55 |     return document_.duplicate(true);
+      |                      ^~~~~~~~~
+/mnt/data/ivory_work/stage177_work/native/ivory/src/ivory_stretchy_document.cpp: In member function ‘godot::Dictionary godot::IvoryStretchyDocument::layer_at(int) const’:
+/mnt/data/ivory_work/stage177_work/native/ivory/src/ivory_stretchy_document.cpp:61:55: error: ‘DICTIONARY’ is not a member of ‘godot::Variant’
+   61 |     return layers[layer_index].get_type() == Variant::DICTIONARY
+      |                                                       ^~~~~~~~~~
+/mnt/data/ivory_work/stage177_work/native/ivory/src/ivory_stretchy_document.cpp: In member function ‘godot::Dictionary godot::IvoryStretchyDocument::add_point(int, const godot::Vector2&)’:
+/mnt/data/ivory_work/stage177_work/native/ivory/src/ivory_stretchy_document.cpp:88:43: error: no matching function for call to ‘godot::Array::Array(<brace-enclosed initializer list>)’
+   88 |     points.append(Array({point.x, point.y}));
+      |                                           ^
+native/stub/godot_cpp/variant/all.hpp:420:8: note: candidate: ‘constexpr godot::Array::Array()’
+  420 | struct Array {
+      |        ^~~~~
+native/stub/godot_cpp/variant/all.hpp:420:8: note:   candidate expects 0 arguments, 1 provided
+native/stub/godot_cpp/variant/all.hpp:420:8: note: candidate: ‘godot::Array::Array(const godot::Array&)’
+native/stub/godot_cpp/variant/all.hpp:420:8: note:   no known conversion for argument 1 from ‘<brace-enclosed initializer list>’ to ‘const godot::Array&’
+native/stub/godot_cpp/variant/all.hpp:420:8: note: candidate: ‘godot::Array::Array(godot::Array&&)’
+native/stub/godot_cpp/variant/all.hpp:420:8: note:   no known conversion for argument 1 from ‘<brace-enclosed initializer list>’ to ‘godot::Array&&’
+/mnt/data/ivory_work/stage177_work/native/ivory/src/ivory_stretchy_document.cpp: In member function ‘godot::Dictionary godot::IvoryStretchyDocument::move_point(int, int, const godot::Vector2&)’:
+/mnt/data/ivory_work/stage177_work/native/ivory/src/ivory_stretchy_document.cpp:103:51: error: no matching function for call to ‘godot::Array::Array(<brace-enclosed initializer list>)’
+  103 |     points[point_index] = Array({point.x, point.y});
+      |                                                   ^
+native/stub/godot_cpp/variant/all.hpp:420:8: note: candidate: ‘constexpr godot::Array::Array()’
+  420 | struct Array {
+      |        ^~~~~
+native/stub/godot_cpp/variant/all.hpp:420:8: note:   candidate expects 0 arguments, 1 provided
+native/stub/godot_cpp/variant/all.hpp:420:8: note: candidate: ‘godot::Array::Array(const godot::Array&)’
+native/stub/godot_cpp/variant/all.hpp:420:8: note:   no known conversion for argument 1 from ‘<brace-enclosed initializer list>’ to ‘const godot::Array&’
+native/stub/godot_cpp/variant/all.hpp:420:8: note: candidate: ‘godot::Array::Array(godot::Array&&)’
+native/stub/godot_cpp/variant/all.hpp:420:8: note:   no known conversion for argument 1 from ‘<brace-enclosed initializer list>’ to ‘godot::Array&&’
+/mnt/data/ivory_work/stage177_work/native/ivory/src/ivory_stretchy_document.cpp: In member function ‘godot::Dictionary godot::IvoryStretchyDocument::finish_triangle(int, const godot::Array&)’:
+/mnt/data/ivory_work/stage177_work/native/ivory/src/ivory_stretchy_document.cpp:120:36: error: ‘const struct godot::Array’ has no member named ‘duplicate’
+  120 |     triangles.append(point_indices.duplicate(true));
+      |                                    ^~~~~~~~~

@@ -1,0 +1,13 @@
+PASS  texture_files declared at function scope
+PASS  layer loop exists
+PASS  only texture append is inside layer loop
+PASS  json_text declared at function scope
+PASS  filename declared at function scope
+PASS  plan declared at function scope
+PASS  dialog condition at function scope
+PASS  save branch remains paired
+PASS  dialog writes json_text
+PASS  non-dialog writes json_text
+PASS  no loop-nested export setup
+PASS  no stale bare result export report
+STRETCHY EXPORT REGRESSION GUARD / 12 CHECKS / 0 FAILURES

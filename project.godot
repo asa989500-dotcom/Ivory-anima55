@@ -1,0 +1,91 @@
+; IVORY -- 2D animation app
+; Godot 4.7
+
+config_version=5
+
+[application]
+
+config/name="IVORY"
+run/main_scene="res://scenes/main.tscn"
+config/features=PackedStringArray("4.7", "Mobile")
+config/icon="res://icon.png"
+# Back is handled in main.gd, which steps out of a room or a panel before
+# it will consider quitting. Left at the default, Godot quits on its own
+# and never gives that code a chance to run.
+config/quit_on_go_back=false
+
+[autoload]
+
+App="*res://scripts/app_state.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="disabled"
+window/handheld/orientation=4
+window/vsync/vsync_mode=1
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=false
+pointing/emulate_mouse_from_touch=true
+
+[rendering]
+
+; Compatibility, not Mobile.
+;
+; Mobile is the Vulkan renderer with a reduced feature set — it still builds
+; the whole Vulkan pipeline, and on a tablet that costs memory and startup
+; time for capabilities nothing in IVORY uses. There is not one 3D node, one
+; real-time light or one post-process in the project.
+;
+; Compatibility is OpenGL ES 3, which is what a 2D paint program actually
+; wants: less driver state, less memory, and far better behaviour on the
+; older and mid-range devices that most of the people using this will have.
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+
+; Linear filtering. Canvas pixels are premultiplied, which is the form that
+; can be filtered correctly — a bilinear sample of premultiplied colour is
+; the right answer, where the same sample of straight alpha is not. This is
+; what stops a zoomed page and a rotated one showing their pixel grid.
+textures/canvas_textures/default_texture_filter=1
+
+; Edge smoothing on everything drawn as geometry rather than as pixels: the
+; page frame, selection outlines, the symmetry axis, the timeline, and the
+; warp mesh.
+;
+; Off, and it has been doing nothing all along. This project renders with
+; `gl_compatibility`, and Godot does not implement 2D MSAA there — it prints
+; "2D MSAA is not yet supported for GLES3" on every single launch and carries
+; on without it. Asking for four samples bought exactly no smoothing and one
+; error in the log that had to be read past to find a real one.
+;
+; What actually smooths the geometry here is the drawing code asking for it:
+; `draw_line`, `draw_arc` and `draw_polyline` take an `antialiased` argument
+; and the outlines that matter pass true. That path is implemented in the
+; compatibility renderer. Nothing looks different with this at zero, because
+; it was never on.
+anti_aliasing/quality/msaa_2d=0
+anti_aliasing/quality/screen_space_aa=0
+
+; Lines and arcs get their own smoothing rather than relying on MSAA alone,
+; so a thin outline stays a clean curve at any zoom.
+2d/snap/snap_2d_transforms_to_pixel=false
+2d/snap/snap_2d_vertices_to_pixel=false
+
+; Nothing on screen is 3D. Saying so keeps the mobile renderer from setting
+; up depth and shadow work that no frame in this app ever uses.
+viewport/hdr_2d=false
+
+; There is no [android] section here on purpose.
+;
+; Two lines used to sit at the bottom of this file asking for read and write
+; access to storage. Godot has no such project settings — Android permissions
+; belong to the export preset — so those two lines did nothing at all, and the
+; app would have shipped without the permission it needs to import a picture.
+;
+; They now live in `export_presets.cfg` under [preset.0.options], where the
+; exporter actually reads them, with READ_MEDIA_IMAGES added beside them for
+; Android 13 and later.

@@ -1,0 +1,13 @@
+
+the pack format
+===============
+
+checksums
+content hashing
+only what changed
+holding records
+weight and the dirty flag
+things that should be refused
+
+36 checks, 0 failures
+

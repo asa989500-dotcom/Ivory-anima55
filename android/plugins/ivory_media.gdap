@@ -1,0 +1,11 @@
+[config]
+
+name="IvoryMedia"
+binary_type="local"
+binary="ivory_media.aar"
+
+[dependencies]
+
+local=[]
+remote=[]
+custom_maven_repos=[]

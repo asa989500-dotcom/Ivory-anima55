@@ -1,0 +1,15 @@
+
+the b-spline
+============
+
+the curve itself
+the curve goes exactly where the finger goes
+and nothing outside it stirs at all
+bending without kinking
+adding a knot changes nothing
+distance along the curve
+finding the place under the finger
+spline things that should not crash
+
+93 checks, 0 failures
+

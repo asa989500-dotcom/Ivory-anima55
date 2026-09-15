@@ -1,0 +1,22 @@
+
+comic panel geometry
+====================
+
+area and winding
+half-plane clipping
+inset
+a cut conserves area
+a cut only touches what it crosses
+nothing leaves the page
+panels do not overlap
+shape cuts
+the paint mask
+things that should not crash
+a heavily divided page
+five project-frame boundary cases
+a cutting session that can be finished
+or abandoned in one press
+clearing the slivers away
+
+99 checks, 0 failures
+
