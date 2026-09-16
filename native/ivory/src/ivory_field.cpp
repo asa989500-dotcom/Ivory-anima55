@@ -258,6 +258,6 @@ Dictionary IvoryField::report() const {
 	out["working_bytes"] = working_bytes();
 	// How far the addressing reaches, so that "infinite" is a number
 	// somebody can look at rather than a claim.
-	out["reach"] = (int64_t)tile_ * 2147483647LL;
+	out["reach"] = (int64_t)((int64_t)tile_ * 2147483647LL);
 	return out;
 }
