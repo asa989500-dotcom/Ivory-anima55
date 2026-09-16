@@ -1,5 +1,5 @@
 #include "ivory_distort.h"
-#include <godot_cpp/variant/math.hpp>
+#include <godot_cpp/core/math.hpp>
 #include <algorithm>
 using namespace godot;
 void IvoryDistort::_bind_methods(){ ClassDB::bind_method(D_METHOD("apply","image","kind","amount"), &IvoryDistort::apply); BIND_ENUM_CONSTANT(LEAN);BIND_ENUM_CONSTANT(ARCH);BIND_ENUM_CONSTANT(SWELL);BIND_ENUM_CONSTANT(TWIST);BIND_ENUM_CONSTANT(PINCH);}
