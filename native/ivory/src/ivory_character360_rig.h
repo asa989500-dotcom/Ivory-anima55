@@ -59,7 +59,7 @@ public:
 	PackedVector2Array solve_ik_pole(const PackedVector2Array &points, const PackedInt32Array &parent,
 			const PackedFloat32Array &lengths, int tip, const Vector2 &target,
 			const Vector2 &pole, int passes = 8) const;
-	void fk_pose(PackedVector2Array &points, const PackedFloat32Array &turns,
+	PackedVector2Array fk_pose(PackedVector2Array points, const PackedFloat32Array &turns,
 			const PackedInt32Array &parent, const PackedFloat32Array &lengths) const;
 
 	// Bone constraints: angle limits, spring amount and look-at target bone.

@@ -181,8 +181,9 @@ PackedVector2Array IvoryCharacter360Rig::solve_ik_pole(const PackedVector2Array 
 	return p;
 }
 
-void IvoryCharacter360Rig::fk_pose(PackedVector2Array &p,const PackedFloat32Array&turns,const PackedInt32Array&parent,const PackedFloat32Array&len)const{
+PackedVector2Array IvoryCharacter360Rig::fk_pose(PackedVector2Array p,const PackedFloat32Array&turns,const PackedInt32Array&parent,const PackedFloat32Array&len)const{
 	for(int i=0;i<p.size()&&i<turns.size()&&i<len.size();++i){int par=i<parent.size()?parent[i]:-1;Vector2 dir=Vector2(1,0).rotated(turns[i]);if(par>=0&&par<p.size()){Vector2 base=p[par];p[i]=base+dir*len[i];}}
+return p;
 }
 
 int IvoryCharacter360Rig::add_constraint(int bone){Constraint c;c.bone=bone;constraints_.push_back(c);return constraints_.size()-1;}
