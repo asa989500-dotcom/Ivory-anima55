@@ -85,8 +85,8 @@ Dictionary IvoryField::tiles_in(const Rect2 &canvas_rect, int cap) const {
 	const double t = (double)tile_;
 	const int64_t x0 = (int64_t)std::floor((double)canvas_rect.position.x / t);
 	const int64_t y0 = (int64_t)std::floor((double)canvas_rect.position.y / t);
-	const int64_t x1 = (int64_t)std::floor((double)canvas_rect.end().x / t);
-	const int64_t y1 = (int64_t)std::floor((double)canvas_rect.end().y / t);
+	const int64_t x1 = (int64_t)std::floor((double)canvas_rect.get_end().x / t);
+	const int64_t y1 = (int64_t)std::floor((double)canvas_rect.get_end().y / t);
 
 	const int64_t across = x1 - x0 + 1;
 	const int64_t down = y1 - y0 + 1;
@@ -218,8 +218,8 @@ PackedVector2Array IvoryField::evictions(int budget, int ring) const {
 	const double t = (double)tile_;
 	const int64_t vx0 = (int64_t)std::floor((double)view.position.x / t) - pad;
 	const int64_t vy0 = (int64_t)std::floor((double)view.position.y / t) - pad;
-	const int64_t vx1 = (int64_t)std::floor((double)view.end().x / t) + pad;
-	const int64_t vy1 = (int64_t)std::floor((double)view.end().y / t) + pad;
+	const int64_t vx1 = (int64_t)std::floor((double)view.get_end().x / t) + pad;
+	const int64_t vy1 = (int64_t)std::floor((double)view.get_end().y / t) + pad;
 
 	std::vector<std::pair<double, int64_t>> candidates;
 	candidates.reserve(seen_.size());
