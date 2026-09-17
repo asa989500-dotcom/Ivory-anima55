@@ -135,7 +135,7 @@ PackedVector2Array IvoryBonePose::positions() const {
 }
 
 void IvoryBonePose::set_positions(const PackedVector2Array &p) {
-	const int n = std::min((int)now_.size(), p.size());
+	const int n = std::min((int)now_.size(), (int)p.size());
 	for (int i = 0; i < n; ++i) now_[(size_t)i] = p[i];
 	// Written wholesale from outside — every joint's drag filter is stale.
 	std::fill(stable_ready_.begin(), stable_ready_.end(), (uint8_t)0);

@@ -208,7 +208,7 @@ void IvoryBlend::set_surface(const PackedByteArray &rgba, int width,
 	w_ = std::max(width, 0);
 	h_ = std::max(height, 0);
 	pixel_.assign((size_t)std::max(w_ * h_ * 4, 0), 0);
-	const int have = std::min(rgba.size(), (int)pixel_.size());
+	const int have = std::min((int)rgba.size(), (int)pixel_.size());
 	for (int i = 0; i < have; ++i) {
 		pixel_[(size_t)i] = rgba[i];
 	}
@@ -241,7 +241,7 @@ void IvoryBlend::set_colours(const PackedByteArray &first,
 void IvoryBlend::set_stamp(const PackedFloat32Array &weights, int px) {
 	stamp_px_ = std::max(px, 0);
 	stamp_.assign((size_t)std::max(stamp_px_ * stamp_px_, 0), 0.0f);
-	const int have = std::min(weights.size(), (int)stamp_.size());
+	const int have = std::min((int)weights.size(), (int)stamp_.size());
 	for (int i = 0; i < have; ++i) {
 		stamp_[(size_t)i] = (float)clampd(weights[i], 0.0, 1.0);
 	}
