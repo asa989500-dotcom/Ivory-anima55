@@ -103,7 +103,7 @@ Dictionary IvoryCharacter360Rig::blend_window(double angle) const {
 
 PackedFloat32Array IvoryCharacter360Rig::settle(PackedFloat32Array values,PackedFloat32Array velocity,double delta,double frequency,double damping,double amount)const{
 	double dt=std::clamp(delta,0.0,1.0/20.0), k=std::max(0.01,frequency)*6.283185307179586, c=std::max(0.01,damping)*2.0;
-	int n=std::min(values.size(),velocity.size());for(int i=0;i<n;++i){double x=values[i],v=velocity[i];double acc=-k*k*x-c*k*v;v+=acc*dt*std::clamp(amount,0.0,1.0);x+=v*dt;values[i]=(float)x;velocity[i]=(float)v;}return values;
+	int n=std::min((int)values.size(),(int)velocity.size());for(int i=0;i<n;++i){double x=values[i],v=velocity[i];double acc=-k*k*x-c*k*v;v+=acc*dt*std::clamp(amount,0.0,1.0);x+=v*dt;values[i]=(float)x;velocity[i]=(float)v;}return values;
 }
 void IvoryCharacter360Rig::set_ik_enabled(bool e){ik_enabled_=e;}
 bool IvoryCharacter360Rig::ik_enabled()const{return ik_enabled_;}
@@ -209,7 +209,7 @@ void IvoryCharacter360Rig::set_ffd(int c,int r,const PackedVector2Array&rest,con
 PackedVector2Array IvoryCharacter360Rig::ffd_deform(const PackedVector2Array&points)const{
 	if(!ffd_enabled())return points;
 	PackedVector2Array o=points;
-	const int n=std::min(ffd_rest_.size(),ffd_live_.size());
+	const int n=std::min((int)ffd_rest_.size(),(int)ffd_live_.size());
 	if(n < 4 || ffd_cols_ < 2 || ffd_rows_ < 2) return o;
 	for(int q=0;q<o.size();++q){
 		float u=0.0f,v=0.0f;

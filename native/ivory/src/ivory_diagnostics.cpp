@@ -161,7 +161,7 @@ Dictionary IvoryDiagnostics::check_pins(const PackedVector2Array &rest_pins,
 		issue(issues, "pin_stride", "All pin arrays must have identical lengths.");
 		++failures;
 	}
-	const int count = std::min(n, std::min(now_pins.size(), std::min(vertex.size(), turn.size())));
+	const int count = std::min(n, std::min((int)now_pins.size(), std::min((int)vertex.size(), (int)turn.size())));
 	for (int i = 0; i < count; ++i) {
 		if (!finite_vec(rest_pins[i]) || !finite_vec(now_pins[i]) || !finite(turn[i])) {
 			issue(issues, "non_finite_pin", "Pin data contains NaN or infinity.", i);

@@ -40,7 +40,7 @@ void IvoryRigCore::_bind_methods(){
 }
 
 bool IvoryRigCore::set_skeleton(const PackedVector2Array &head,const PackedVector2Array &tail,const PackedInt32Array &parent){
- int n=std::min(head.size(),tail.size()); if(n<0)return false;
+ int n=std::min((int)head.size(),(int)tail.size()); if(n<0)return false;
  rest_h_.resize(n);rest_t_.resize(n);parent_.resize(n);
  for(int i=0;i<n;i++){rest_h_[i]=finite_vec(head[i]);rest_t_[i]=finite_vec(tail[i],rest_h_[i]);int p=(i<parent.size()?parent[i]:-1);parent_[i]=(p>=0&&p<n&&p!=i)?p:-1;}
  for(int i=0;i<n;i++){int x=parent_[i],steps=0;while(x>=0&&steps++<=n){if(x==i){parent_[i]=-1;break;}x=parent_[x];}}

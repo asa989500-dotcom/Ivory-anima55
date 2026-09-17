@@ -187,7 +187,7 @@ void IvoryRig360::clear() {
 
 int IvoryRig360::suggest_from(const PackedVector2Array &at,
 		const PackedInt32Array &kind) {
-	const int n = std::min(at.size(), kind.size());
+	const int n = std::min((int)at.size(), (int)kind.size());
 	if (n == 0) {
 		return 0;
 	}

@@ -163,8 +163,8 @@ PackedVector2Array IvorySkin::deform(const PackedVector2Array &rest_points,
 		const PackedVector2Array &now_b, const PackedInt32Array &bone_island) {
 	PackedVector2Array out = rest_points;
 	const int points = rest_points.size();
-	int bones = std::min(rest_a.size(), rest_b.size());
-	bones = std::min(bones, std::min(now_a.size(), now_b.size()));
+	int bones = std::min((int)rest_a.size(), (int)rest_b.size());
+	bones = std::min(bones, std::min((int)now_a.size(), (int)now_b.size()));
 	if (points == 0 || bones == 0) {
 		return out;
 	}

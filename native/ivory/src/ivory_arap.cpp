@@ -146,7 +146,7 @@ void IvoryArapSolver::set_pins(const PackedInt32Array &indices, const PackedVect
 	// different pin.
 	for (int i = 0; i < n; ++i) held_[(size_t)i] = frozen_[(size_t)i];
 
-	const int count = std::min(indices.size(), at.size());
+	const int count = std::min((int)indices.size(), (int)at.size());
 	for (int k = 0; k < count; ++k) {
 		const int i = indices[k];
 		if (i < 0 || i >= n) continue;
@@ -435,7 +435,7 @@ PackedVector2Array IvoryArapSolver::positions() const {
 }
 
 void IvoryArapSolver::set_positions(const PackedVector2Array &p) {
-	const int n = std::min((int)now_.size(), p.size());
+	const int n = std::min((int)now_.size(), (int)p.size());
 	for (int i = 0; i < n; ++i) now_[(size_t)i] = p[i];
 	// A caller setting the pose outright — warm-starting after a rebuild —
 	// is asserting this is a good pose, so it becomes the guard's fallback

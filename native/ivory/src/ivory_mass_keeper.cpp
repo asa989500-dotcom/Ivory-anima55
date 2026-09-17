@@ -53,7 +53,7 @@ PackedVector2Array IvoryMassKeeper::preserve_joint_mass(
         double strength, int iterations) const {
     PackedVector2Array out = now_points;
     const int n = now_points.size();
-    const int bones = std::min(rest_a.size(), rest_b.size());
+    const int bones = std::min((int)rest_a.size(), (int)rest_b.size());
     if (n == 0 || n != rest_points.size() || triangles.size() < 3 || bones < 2) return out;
     strength = std::clamp(std::isfinite(strength) ? strength : 0.72, 0.0, 1.0);
     iterations = std::clamp(iterations, 0, 6);

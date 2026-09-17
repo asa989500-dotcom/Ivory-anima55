@@ -64,7 +64,7 @@ void IvoryPose::_bind_methods() {
 
 void IvoryPose::set_skeleton(const PackedVector2Array &head,
 		const PackedVector2Array &tail, const PackedInt32Array &parent) {
-	const int n = std::min(head.size(), tail.size());
+	const int n = std::min((int)head.size(), (int)tail.size());
 	head_.clear();
 	tail_.clear();
 	parent_.clear();

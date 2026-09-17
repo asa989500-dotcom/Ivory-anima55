@@ -62,7 +62,7 @@ double IvoryAnimation::key_progress(double frame, int from_frame, int to_frame) 
 
 void IvoryAnimation::begin_angle_blend(const PackedFloat32Array &from,
         const PackedFloat32Array &to, double duration) {
-    const int n = std::min(from.size(), to.size());
+    const int n = std::min((int)from.size(), (int)to.size());
     from_.resize(n);
     to_.resize(n);
     for (int i = 0; i < n; ++i) {
