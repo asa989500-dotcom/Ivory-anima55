@@ -1,4 +1,5 @@
 #include "ivory_bone.h"
+#include <godot_cpp/core/math_defs.hpp>
 
 #include <godot_cpp/variant/packed_byte_array.hpp>
 
@@ -563,10 +564,10 @@ void IvoryBone::limit_all() {
 		}
 		double rel = (double)(tail_[i] - head_[i]).angle()
 				- (double)(tail_[p] - head_[p]).angle();
-		while (rel > Math_PI) {
+		while (rel > PI) {
 			rel -= Math_TAU;
 		}
-		while (rel < -Math_PI) {
+		while (rel < -PI) {
 			rel += Math_TAU;
 		}
 		const double held = std::min(std::max(rel, (double)lo), (double)hi);
