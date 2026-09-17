@@ -1,4 +1,5 @@
 #include "ivory_brush.h"
+#include <godot_cpp/core/math_defs.hpp>
 #include "ivory_brush_safety.h"
 
 #include <algorithm>
@@ -292,7 +293,7 @@ PackedFloat32Array IvoryBrush::halo(int px, int variant) const {
 		// Ring centres are pushed towards the middle by taking the square
 		// root of a uniform radius — otherwise a uniform disc of centres
 		// leaves the middle of the stamp visibly emptier than its rim.
-		const double ang = unit(i, 1, salt) * Math_TAU;
+		const double ang = unit(i, 1, salt) * TAU;
 		const double rad = std::sqrt(unit(i, 2, salt)) * half * 0.86;
 		const double cx = half + std::cos(ang) * rad;
 		const double cy = half + std::sin(ang) * rad;

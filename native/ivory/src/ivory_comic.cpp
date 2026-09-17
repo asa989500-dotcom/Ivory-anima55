@@ -500,7 +500,7 @@ PackedVector2Array IvoryComic::circle_in(const Rect2 &box, int steps) {
 	for (int i = 0; i < n; i++) {
 		// Clockwise, matching `page_frame`, so every polygon in the system
 		// winds the same way and `inset` never has to guess.
-		const double t = (double)i / (double)n * Math_TAU;
+		const double t = (double)i / (double)n * TAU;
 		out[i] = Vector2((real_t)(cx + std::cos(t) * rx),
 				(real_t)(cy + std::sin(t) * ry));
 	}

@@ -70,8 +70,8 @@ void IvoryBone::set_skeleton(const PackedVector2Array &head,
 		}
 	}
 	if ((int)min_arc_.size() != n) {
-		min_arc_.assign(n, (float)-Math_TAU);
-		max_arc_.assign(n, (float)Math_TAU);
+		min_arc_.assign(n, (float)-TAU);
+		max_arc_.assign(n, (float)TAU);
 	}
 	rebuild_kids();
 }
@@ -79,8 +79,8 @@ void IvoryBone::set_skeleton(const PackedVector2Array &head,
 void IvoryBone::set_limits(const PackedFloat32Array &min_arc,
 		const PackedFloat32Array &max_arc) {
 	const int n = (int)head_.size();
-	min_arc_.assign(n, (float)-Math_TAU);
-	max_arc_.assign(n, (float)Math_TAU);
+	min_arc_.assign(n, (float)-TAU);
+	max_arc_.assign(n, (float)TAU);
 	for (int i = 0; i < n; i++) {
 		if (i < min_arc.size()) {
 			min_arc_[i] = min_arc[i];
@@ -556,19 +556,19 @@ void IvoryBone::limit_all() {
 			continue;
 		}
 		const float lo = i < (int)min_arc_.size() ? min_arc_[i]
-				: (float)-Math_TAU;
+				: (float)-TAU;
 		const float hi = i < (int)max_arc_.size() ? max_arc_[i]
-				: (float)Math_TAU;
-		if (lo <= (float)-Math_TAU + 0.001f && hi >= (float)Math_TAU - 0.001f) {
+				: (float)TAU;
+		if (lo <= (float)-TAU + 0.001f && hi >= (float)TAU - 0.001f) {
 			continue;
 		}
 		double rel = (double)(tail_[i] - head_[i]).angle()
 				- (double)(tail_[p] - head_[p]).angle();
 		while (rel > PI) {
-			rel -= Math_TAU;
+			rel -= TAU;
 		}
 		while (rel < -PI) {
-			rel += Math_TAU;
+			rel += TAU;
 		}
 		const double held = std::min(std::max(rel, (double)lo), (double)hi);
 		if (std::fabs(held - rel) > 1.0e-6) {
