@@ -500,7 +500,7 @@ PackedVector2Array IvoryComic::circle_in(const Rect2 &box, int steps) {
 	for (int i = 0; i < n; i++) {
 		// Clockwise, matching `page_frame`, so every polygon in the system
 		// winds the same way and `inset` never has to guess.
-		const double t = (double)i / (double)n * TAU;
+		const double t = (double)i / (double)n * Math::TAU;
 		out[i] = Vector2((real_t)(cx + std::cos(t) * rx),
 				(real_t)(cy + std::sin(t) * ry));
 	}
@@ -863,7 +863,7 @@ int IvoryComic::tidy(double min_area, double min_compactness) {
 		// A panel four hundred long and two wide passes any area test worth
 		// setting and fails this, which is the point of having it.
 		const double p = perimeter_of(poly);
-		const double compact = p > 1e-9 ? (4.0 * PI * area) / (p * p) : 0.0;
+		const double compact = p > 1e-9 ? (4.0 * Math::PI * area) / (p * p) : 0.0;
 		if (compact < floor_shape) {
 			++gone;
 			continue;

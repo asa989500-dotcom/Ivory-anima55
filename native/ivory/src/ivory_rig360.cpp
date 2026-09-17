@@ -120,8 +120,8 @@ int IvoryRig360::add_bone(const Vector2 &head, const Vector2 &tail,
 	b.part = (int32_t)clampd(part, 0, PART_COUNT - 1);
 	b.angle = 0.0;
 	bone_.push_back(b);
-	min_angle_.push_back((float)-TAU);
-	max_angle_.push_back((float)TAU);
+	min_angle_.push_back((float)-Math::TAU);
+	max_angle_.push_back((float)Math::TAU);
 	Undo u;
 	u.what = String("add_bone");
 	u.bone = (int32_t)bone_.size() - 1;
@@ -416,8 +416,8 @@ void IvoryRig360::set_angle(int index, double radians) {
 	if (index < 0 || index >= (int)bone_.size()) {
 		return;
 	}
-	const double lo = index < (int)min_angle_.size() ? min_angle_[(size_t)index] : -TAU;
-	const double hi = index < (int)max_angle_.size() ? max_angle_[(size_t)index] : TAU;
+	const double lo = index < (int)min_angle_.size() ? min_angle_[(size_t)index] : -Math::TAU;
+	const double hi = index < (int)max_angle_.size() ? max_angle_[(size_t)index] : Math::TAU;
 	const double clamped = clampd(radians, std::min(lo, hi), std::max(lo, hi));
 	if (std::fabs(clamped - bone_[(size_t)index].angle) < 1.0e-12) return;
 	Undo u;
@@ -431,16 +431,16 @@ void IvoryRig360::set_angle(int index, double radians) {
 void IvoryRig360::set_angle_limits(int index, double min_radians, double max_radians) {
 	if (index < 0 || index >= (int)bone_.size()) return;
 	if (min_radians > max_radians) std::swap(min_radians, max_radians);
-	min_angle_[(size_t)index] = (float)clampd(min_radians, -TAU, TAU);
-	max_angle_[(size_t)index] = (float)clampd(max_radians, -TAU, TAU);
+	min_angle_[(size_t)index] = (float)clampd(min_radians, -Math::TAU, Math::TAU);
+	max_angle_[(size_t)index] = (float)clampd(max_radians, -Math::TAU, Math::TAU);
 	set_angle(index, bone_[(size_t)index].angle);
 }
 
 Dictionary IvoryRig360::angle_limits(int index) const {
 	Dictionary out;
 	if (index < 0 || index >= (int)bone_.size()) return out;
-	out["min"] = index < (int)min_angle_.size() ? min_angle_[(size_t)index] : -TAU;
-	out["max"] = index < (int)max_angle_.size() ? max_angle_[(size_t)index] : TAU;
+	out["min"] = index < (int)min_angle_.size() ? min_angle_[(size_t)index] : -Math::TAU;
+	out["max"] = index < (int)max_angle_.size() ? max_angle_[(size_t)index] : Math::TAU;
 	return out;
 }
 
@@ -770,8 +770,8 @@ void IvoryRig360::apply_actions() {
 	for (size_t i = 0; i < bone_.size(); ++i) {
 		if (count[i] > 0) {
 			next[i] = sum[i] / (double)count[i];
-			const double lo = min_angle_.empty() ? -TAU : min_angle_[i];
-			const double hi = max_angle_.empty() ? TAU : max_angle_[i];
+			const double lo = min_angle_.empty() ? -Math::TAU : min_angle_[i];
+			const double hi = max_angle_.empty() ? Math::TAU : max_angle_[i];
 			next[i] = clampd(next[i], std::min(lo, hi), std::max(lo, hi));
 		}
 	}
