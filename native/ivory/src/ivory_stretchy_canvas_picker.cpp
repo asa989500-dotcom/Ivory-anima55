@@ -91,7 +91,7 @@ void IvoryStretchyCanvasPicker::build_ui() {
                 String::num_int64(preset.width) + " × " +
                 String::num_int64(preset.height));
         button->set_custom_minimum_size(Vector2(0.0, 68.0));
-        button->set_size_flags_horizontal(Control::SIZE_EXPAND_FILL);
+        button->set_h_size_flags(Control::SIZE_EXPAND_FILL);
         button->set_focus_mode(Control::FOCUS_NONE);
         button->connect("pressed", Callable(this, StringName("_choose_canvas")).bind(
                 preset.width, preset.height, String(preset.key)));

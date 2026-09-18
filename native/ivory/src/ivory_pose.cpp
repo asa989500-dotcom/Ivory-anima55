@@ -486,8 +486,8 @@ double IvoryPose::drift() const {
 	// one hand moving is exactly the thing that deserves a frame.
 	double worst = 0.0;
 	for (size_t i = 0; i < head_.size(); ++i) {
-		worst = std::max(worst, head_[i].distance_to(keyed_head_[i]));
-		worst = std::max(worst, tail_[i].distance_to(keyed_tail_[i]));
+		worst = std::max(worst, (double)head_[i].distance_to(keyed_head_[i]));
+		worst = std::max(worst, (double)tail_[i].distance_to(keyed_tail_[i]));
 	}
 	return worst;
 }

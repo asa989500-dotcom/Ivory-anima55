@@ -120,7 +120,7 @@ private:
 	static double wrap_angle(double a);
 };
 
-VARIANT_ENUM_CAST(IvoryCharacter360Rig::PinType);
-
 } // namespace godot
+
+VARIANT_ENUM_CAST(godot::IvoryCharacter360Rig::PinType);
 #endif

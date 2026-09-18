@@ -178,7 +178,7 @@ Dictionary IvoryStretchyDocument::add_bone(const Vector2 &start, const Vector2 &
     bone["name"] = String("Bone ") + String::num_int64(id + 1);
     bone["x"] = start.x;
     bone["y"] = start.y;
-	bone["length"] = std::max(8.0, start.distance_to(end));
+	bone["length"] = std::max(8.0, (double)start.distance_to(end));
     bone["angle"] = (end - start).angle();
     armature.append(bone);
     document_["armature"] = armature;
@@ -192,7 +192,7 @@ Dictionary IvoryStretchyDocument::rotate_bone(int bone_index, const Vector2 &tip
     const Vector2 root(float(bone.get("x", 0.0)), float(bone.get("y", 0.0)));
     const Vector2 delta = tip - root;
     bone["angle"] = delta.angle();
-	bone["length"] = std::max(4.0, delta.length());
+	bone["length"] = std::max(4.0, (double)delta.length());
     armature[bone_index] = bone;
     document_["armature"] = armature;
     return bone;

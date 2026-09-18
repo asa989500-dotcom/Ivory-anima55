@@ -3,6 +3,7 @@
 #include <godot_cpp/classes/dir_access.hpp>
 #include <godot_cpp/classes/file_access.hpp>
 #include <godot_cpp/classes/os.hpp>
+#include <godot_cpp/classes/json.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
 
 #include <algorithm>
@@ -41,7 +42,9 @@ Dictionary IvoryStretchyExport::build_model3(const Dictionary &opts) {
 		Dictionary idle;
 		Array files;
 		for (int i = 0; i < motions.size(); ++i) {
-			files.push_back(Dictionary{{"File", motions[i]}});
+			Dictionary file_entry;
+			file_entry["File"] = motions[i];
+			files.push_back(file_entry);
 		}
 		idle["Idle"] = files;
 		refs["Motions"] = idle;
@@ -56,7 +59,11 @@ Dictionary IvoryStretchyExport::build_model3(const Dictionary &opts) {
 		const String k = String(group_keys[i]);
 		const Array ids = groups[k];
 		if (!ids.is_empty()) {
-			groups_array.push_back(Dictionary{{"Target", "Parameter"}, {"Name", k}, {"Ids", ids}});
+			Dictionary group_entry;
+			group_entry["Target"] = "Parameter";
+			group_entry["Name"] = k;
+			group_entry["Ids"] = ids;
+			groups_array.push_back(group_entry);
 		}
 	}
 	if (!groups_array.is_empty()) model["Groups"] = groups_array;
@@ -89,7 +96,10 @@ Dictionary IvoryStretchyExport::build_cdi3(const Dictionary &opts) {
 		for (int i = 0; i < parts.size(); ++i) {
 			Dictionary p = parts[i];
 			const String id = String(p.get("id", ""));
-			out.push_back(Dictionary{{"Id", id}, {"Name", String(p.get("name", id))}});
+			Dictionary part_entry;
+			part_entry["Id"] = id;
+			part_entry["Name"] = String(p.get("name", id));
+			out.push_back(part_entry);
 		}
 		result["Parts"] = out;
 	}
@@ -176,7 +186,11 @@ Dictionary IvoryStretchyExport::build_motion3(const Dictionary &animation, const
 			Array idx_kfs;
 			for (int k = 0; k < kfs.size(); ++k) {
 				Dictionary q = kfs[k];
-				idx_kfs.push_back(Dictionary{{"time", q.get("time", 0.0)}, {"value", k}, {"easing", q.get("easing", "linear")}});
+				Dictionary idx_entry;
+				idx_entry["time"] = q.get("time", 0.0);
+				idx_entry["value"] = k;
+				idx_entry["easing"] = q.get("easing", "linear");
+				idx_kfs.push_back(idx_entry);
 			}
 			kfs = idx_kfs;
 			target = "Parameter";
@@ -194,7 +208,11 @@ Dictionary IvoryStretchyExport::build_motion3(const Dictionary &animation, const
 		}
 		segment_count += sc;
 		point_count += pc;
-		curves.push_back(Dictionary{{"Target", target}, {"Id", id}, {"Segments", seg}});
+		Dictionary curve_entry;
+		curve_entry["Target"] = target;
+		curve_entry["Id"] = id;
+		curve_entry["Segments"] = seg;
+		curves.push_back(curve_entry);
 	}
 	Dictionary meta;
 	meta["Duration"] = duration;
@@ -206,7 +224,11 @@ Dictionary IvoryStretchyExport::build_motion3(const Dictionary &animation, const
 	meta["TotalPointCount"] = point_count;
 	meta["UserDataCount"] = 0;
 	meta["TotalUserDataSize"] = 0;
-	return Dictionary{{"Version", 3}, {"Meta", meta}, {"Curves", curves}};
+	Dictionary final_out;
+	final_out["Version"] = 3;
+	final_out["Meta"] = meta;
+	final_out["Curves"] = curves;
+	return final_out;
 }
 
 String IvoryStretchyExport::model3_json(const Dictionary &opts) const {
@@ -231,7 +253,7 @@ Dictionary IvoryStretchyExport::build_stretchy_tracks(const Dictionary &project)
 	for (int i = 0; i < audio.size(); ++i) {
 		Dictionary a = audio[i];
 		Dictionary out;
-		out["id"] = String(a.get("id", String("audio_%02d") % i));
+		out["id"] = String(a.get("id", String("audio_%02d") % (int64_t)i));
 		out["source"] = String(a.get("source", a.get("path", "")));
 		out["start_us"] = int64_t(a.get("start_us", int64_t(double(a.get("start", 0.0)) * 1000000.0)));
 		out["end_us"] = int64_t(a.get("end_us", int64_t(double(a.get("end", 0.0)) * 1000000.0)));
@@ -243,8 +265,8 @@ Dictionary IvoryStretchyExport::build_stretchy_tracks(const Dictionary &project)
 
 	Dictionary perf;
 	perf["enabled"] = bool(project.get("performance_track_enabled", true));
-	perf["sample_every_frames"] = maxi(int(project.get("performance_sample_every_frames", 1)), 1);
-	perf["frame_budget_ms"] = double(project.get("performance_frame_budget_ms", 1000.0 / maxi(int(project.get("fps", 24)), 1)));
+	perf["sample_every_frames"] = std::max(int(project.get("performance_sample_every_frames", 1)), 1);
+	perf["frame_budget_ms"] = double(project.get("performance_frame_budget_ms", 1000.0 / std::max(int(project.get("fps", 24)), 1)));
 	perf["metrics"] = Array({"render_ms", "audio_ms", "submit_ms", "total_ms", "dropped_frames"});
 	doc["performance_track"] = perf;
 
@@ -339,22 +361,29 @@ Dictionary IvoryStretchyExport::export_json_bundle(const Dictionary &project, co
 	const Array layers = project.get("layers", Array());
 	for (int i = 0; i < layers.size(); ++i) {
 		Dictionary l = layers[i];
-		textures.push_back(String(l.get("name", String("texture_%02d.png") % i)).get_basename() + ".png");
+		textures.push_back(String(l.get("name", String("texture_%02d.png") % (int64_t)i)).get_basename() + ".png");
 	}
-	Dictionary model_opts{{"model_name", model_name}, {"texture_files", textures}};
+	Dictionary model_opts;
+	model_opts["model_name"] = model_name;
+	model_opts["texture_files"] = textures;
 	const Array params = project.get("parameters", Array());
 	Array cdi_params;
 	for (int i = 0; i < params.size(); ++i) {
 		Dictionary p = params[i];
-		cdi_params.push_back(Dictionary{{"id", p.get("id", "")}, {"name", p.get("name", p.get("id", ""))}, {"group_id", p.get("groupId", "")}});
+		Dictionary cdi_entry;
+		cdi_entry["id"] = p.get("id", "");
+		cdi_entry["name"] = p.get("name", p.get("id", ""));
+		cdi_entry["group_id"] = p.get("groupId", "");
+		cdi_params.push_back(cdi_entry);
 	}
-	Dictionary cdi_opts{{"parameters", cdi_params}};
+	Dictionary cdi_opts;
+	cdi_opts["parameters"] = cdi_params;
 	Dictionary cdi_parts;
 	Array anim_files;
 	const Array animations = project.get("animations", Array());
 	for (int i = 0; i < animations.size(); ++i) {
 		Dictionary a = animations[i];
-		const String filename = sanitize_name(String(a.get("name", String("motion_%02d") % i))) + ".motion3.json";
+		const String filename = sanitize_name(String(a.get("name", String("motion_%02d") % (int64_t)i))) + ".motion3.json";
 		const String path = directory.path_join(filename);
 		Ref<FileAccess> f = FileAccess::open(path, FileAccess::WRITE);
 		if (f.is_null()) {

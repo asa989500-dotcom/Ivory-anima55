@@ -110,9 +110,9 @@ void IvoryAnimationWorkspacePicker::layout_fixed() {
         return;
     }
 
-    const float w = MAXF(get_size().x, PANEL_W);
-    const float h = MAXF(get_size().y, PANEL_H);
-    const float button_w = MAXF(1.0f, w - PAD_X * 2.0f);
+    const float w = MAX(get_size().x, PANEL_W);
+    const float h = MAX(get_size().y, PANEL_H);
+    const float button_w = MAX(1.0f, w - PAD_X * 2.0f);
 
     // The title is informational only; the two hit targets are the fixed
     // anchors of this panel.  Their positions are calculated from the panel,
@@ -129,9 +129,9 @@ void IvoryAnimationWorkspacePicker::layout_fixed() {
     // Keep the visible touch targets in the panel even if an external parent
     // briefly supplies a larger size.  Never use a scroll offset to repair it.
     if (second_y + BUTTON_H > h) {
-        const float safe_second = MAXF(PAD_TOP + 30.0f,
+        const float safe_second = MAX(PAD_TOP + 30.0f,
                 h - BUTTON_H - PAD_TOP);
-        const float safe_first = MAXF(PAD_TOP,
+        const float safe_first = MAX(PAD_TOP,
                 safe_second - BUTTON_H - GAP);
         ivory_button_->set_position(Vector2(PAD_X, safe_first));
         stretchy_button_->set_position(Vector2(PAD_X, safe_second));
@@ -150,7 +150,7 @@ bool IvoryAnimationWorkspacePicker::safety_guard_29() const {
     pass += ivory_button_ != stretchy_button_;                           // 05
     pass += get_size().x >= PANEL_W - 0.5f;                              // 06
     pass += get_size().y >= PANEL_H - 0.5f;                              // 07
-    pass += get_clip_contents() == false;                                // 08
+    pass += const_cast<IvoryAnimationWorkspacePicker *>(this)->is_clipping_contents() == false; // 08
     pass += get_mouse_filter() == Control::MOUSE_FILTER_STOP;             // 09
     pass += get_z_index() >= PANEL_Z;                                    // 10
     pass += surface_->get_parent() == this;                              // 11
@@ -171,8 +171,8 @@ bool IvoryAnimationWorkspacePicker::safety_guard_29() const {
     pass += ivory_button_->get_position().y >= 0.0f && stretchy_button_->get_position().y >= 0.0f; // 26
     pass += ivory_button_->get_position().y + ivory_button_->get_size().y <= get_size().y + 1.0f; // 27
     pass += stretchy_button_->get_position().y + stretchy_button_->get_size().y <= get_size().y + 1.0f; // 28
-    pass += ivory_button_->is_connected("pressed", Callable(this, StringName("_choose_ivory"))) &&
-            stretchy_button_->is_connected("pressed", Callable(this, StringName("_choose_stretchy"))); // 29
+    pass += ivory_button_->is_connected("pressed", Callable(const_cast<IvoryAnimationWorkspacePicker *>(this), StringName("_choose_ivory"))) &&
+            stretchy_button_->is_connected("pressed", Callable(const_cast<IvoryAnimationWorkspacePicker *>(this), StringName("_choose_stretchy"))); // 29
     return pass == 29;
 }
 
