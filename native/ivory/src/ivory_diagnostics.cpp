@@ -132,7 +132,7 @@ Dictionary IvoryDiagnostics::check_pose(const PackedVector2Array &rest,
 		issue(issues, "pose_size", "Current pose must have exactly one point per rest vertex.");
 		++failures;
 	}
-	const int count = std::min(n, now.size());
+	const int count = std::min(n, (int)now.size());
 	for (int i = 0; i < count; ++i) {
 		if (!finite_vec(now[i])) {
 			issue(issues, "non_finite_pose", "Pose contains NaN or infinity.", i);
