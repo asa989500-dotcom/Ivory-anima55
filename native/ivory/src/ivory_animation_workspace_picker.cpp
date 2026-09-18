@@ -76,7 +76,7 @@ void IvoryAnimationWorkspacePicker::build_ui() {
     ivory_button_->set_disabled(false);
     ivory_button_->set_visible(true);
     ivory_button_->set_custom_minimum_size(Vector2(PANEL_W - PAD_X * 2.0f, BUTTON_H));
-    ivory_button_->connect("pressed", Callable(this, "_choose_ivory"));
+    ivory_button_->connect("pressed", Callable(this, StringName("_choose_ivory")));
     surface_->add_child(ivory_button_);
 
     stretchy_button_ = memnew(Button);
@@ -90,7 +90,7 @@ void IvoryAnimationWorkspacePicker::build_ui() {
     stretchy_button_->set_disabled(false);
     stretchy_button_->set_visible(true);
     stretchy_button_->set_custom_minimum_size(Vector2(PANEL_W - PAD_X * 2.0f, BUTTON_H));
-    stretchy_button_->connect("pressed", Callable(this, "_choose_stretchy"));
+    stretchy_button_->connect("pressed", Callable(this, StringName("_choose_stretchy")));
     surface_->add_child(stretchy_button_);
 
     layout_fixed();
@@ -171,8 +171,8 @@ bool IvoryAnimationWorkspacePicker::safety_guard_29() const {
     pass += ivory_button_->get_position().y >= 0.0f && stretchy_button_->get_position().y >= 0.0f; // 26
     pass += ivory_button_->get_position().y + ivory_button_->get_size().y <= get_size().y + 1.0f; // 27
     pass += stretchy_button_->get_position().y + stretchy_button_->get_size().y <= get_size().y + 1.0f; // 28
-    pass += ivory_button_->is_connected("pressed", Callable(this, "_choose_ivory")) &&
-            stretchy_button_->is_connected("pressed", Callable(this, "_choose_stretchy")); // 29
+    pass += ivory_button_->is_connected("pressed", Callable(this, StringName("_choose_ivory"))) &&
+            stretchy_button_->is_connected("pressed", Callable(this, StringName("_choose_stretchy"))); // 29
     return pass == 29;
 }
 

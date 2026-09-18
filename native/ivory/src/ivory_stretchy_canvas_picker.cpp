@@ -50,7 +50,7 @@ void IvoryStretchyCanvasPicker::build_ui() {
     back->set_text("Back  /  رجوع");
     back->set_custom_minimum_size(Vector2(0.0, 48.0));
     back->set_focus_mode(Control::FOCUS_NONE);
-    back->connect("pressed", Callable(this, "_choose_back"));
+    back->connect("pressed", Callable(this, StringName("_choose_back")));
     column->add_child(back);
 
     Label *title = memnew(Label);
@@ -93,7 +93,7 @@ void IvoryStretchyCanvasPicker::build_ui() {
         button->set_custom_minimum_size(Vector2(0.0, 68.0));
         button->set_size_flags_horizontal(Control::SIZE_EXPAND_FILL);
         button->set_focus_mode(Control::FOCUS_NONE);
-        button->connect("pressed", Callable(this, "_choose_canvas").bind(
+        button->connect("pressed", Callable(this, StringName("_choose_canvas")).bind(
                 preset.width, preset.height, String(preset.key)));
         grid->add_child(button);
     }
