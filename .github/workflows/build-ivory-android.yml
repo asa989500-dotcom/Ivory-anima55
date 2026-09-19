@@ -93,8 +93,35 @@ jobs:
       - name: Locate and place godot-lib aar
         shell: bash
         run: |
-          find templates_extracted -iname "godot-lib*.aar"
-          AAR=$(find templates_extracted -iname "godot-lib*.template_release.aar" | head -n1)
+          echo "== Top-level structure =="
+          find templates_extracted -maxdepth 3
+          echo "== Direct search for aar =="
+          find templates_extracted -iname "godot-lib*.aar" || true
+
+          AAR=$(find templates_extracted -iname "godot-lib*template_release*.aar" | head -n1)
+
+          if [ -z "$AAR" ]; then
+            echo "Not found directly - looking for a nested zip (e.g. android_source.zip) to extract"
+            NESTED_ZIP=$(find templates_extracted -iname "android_source.zip" | head -n1)
+            if [ -n "$NESTED_ZIP" ]; then
+              echo "Extracting nested zip: $NESTED_ZIP"
+              unzip -q "$NESTED_ZIP" -d templates_extracted/android_source_unzipped
+              AAR=$(find templates_extracted/android_source_unzipped -iname "godot-lib*template_release*.aar" | head -n1)
+            fi
+          fi
+
+          if [ -z "$AAR" ]; then
+            echo "Still not found - searching for ANY .aar file as a last resort"
+            find templates_extracted -iname "*.aar"
+            AAR=$(find templates_extracted -iname "*.aar" | grep -i "godot" | head -n1)
+          fi
+
+          echo "Resolved AAR path: $AAR"
+          if [ -z "$AAR" ]; then
+            echo "FATAL: could not locate godot-lib aar anywhere in the templates package"
+            exit 1
+          fi
+
           mkdir -p android/plugin_src/ivory_media/libs
           cp "$AAR" android/plugin_src/ivory_media/libs/
 
