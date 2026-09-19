@@ -123,7 +123,8 @@ jobs:
           fi
 
           mkdir -p android/plugin_src/ivory_media/libs
-          cp "$AAR" android/plugin_src/ivory_media/libs/
+          unzip -p "$AAR" classes.jar > android/plugin_src/ivory_media/libs/godot-lib.jar
+          ls -la android/plugin_src/ivory_media/libs/
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
