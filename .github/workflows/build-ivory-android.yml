@@ -45,6 +45,10 @@ jobs:
           python-version: '3.11'
       - run: python -m pip install --upgrade pip scons
 
+      - name: Build IVORY Android ARM64 editor
+        working-directory: native/ivory
+        run: scons platform=android arch=arm64 target=editor ndk_version=27.2.12479018 -j2
+
       - name: Build IVORY Android ARM64 release
         working-directory: native/ivory
         run: scons platform=android arch=arm64 target=template_release ndk_version=27.2.12479018 -j2
@@ -61,7 +65,57 @@ jobs:
         with:
           name: ivory-android-arm64-native
           path: |
+            bin/libivory.android.editor.arm64.so
             bin/libivory.android.template_release.arm64.so
             bin/libivory.android.template_debug.arm64.so
             ivory.gdextension
             native/ivory/BUILD_NATIVE_PICKER.md
+
+  android-media-plugin:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout IVORY
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Download Godot 4.7 export templates
+        shell: bash
+        run: |
+          curl -L -o templates.tpz \
+            "https://github.com/godotengine/godot/releases/download/4.7-stable/Godot_v4.7-stable_export_templates.tpz"
+          unzip -q templates.tpz -d templates_extracted
+
+      - name: Locate and place godot-lib aar
+        shell: bash
+        run: |
+          find templates_extracted -iname "godot-lib*.aar"
+          AAR=$(find templates_extracted -iname "godot-lib*.template_release.aar" | head -n1)
+          mkdir -p android/plugin_src/ivory_media/libs
+          cp "$AAR" android/plugin_src/ivory_media/libs/
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build IvoryMedia plugin AAR
+        working-directory: android/plugin_src
+        run: gradle :ivory_media:assembleRelease --no-daemon
+
+      - name: Collect plugin output
+        shell: bash
+        run: |
+          mkdir -p android/plugins
+          find android/plugin_src -iname "*.aar"
+          cp android/plugin_src/ivory_media/build/outputs/aar/ivory_media.release.aar android/plugins/ivory_media.aar
+
+      - name: Upload IvoryMedia plugin
+        uses: actions/upload-artifact@v4
+        with:
+          name: ivory-media-plugin
+          path: |
+            android/plugins/ivory_media.aar
+            android/plugins/ivory_media.gdap
