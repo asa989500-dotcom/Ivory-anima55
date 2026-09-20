@@ -123,8 +123,16 @@ jobs:
           fi
 
           mkdir -p android/plugin_src/ivory_media/libs
-          unzip -p "$AAR" classes.jar > android/plugin_src/ivory_media/libs/godot-lib.jar
-          ls -la android/plugin_src/ivory_media/libs/
+          cp "$AAR" android/plugin_src/ivory_media/libs/godot-lib.aar
+
+          SIZE=$(stat -c%s android/plugin_src/ivory_media/libs/godot-lib.aar 2>/dev/null || stat -f%z android/plugin_src/ivory_media/libs/godot-lib.aar)
+          echo "godot-lib.aar size: $SIZE bytes"
+          if [ "$SIZE" -lt 100000 ]; then
+            echo "FATAL: godot-lib.aar looks too small/empty to be real - aborting"
+            exit 1
+          fi
+          echo "== Contents of godot-lib.aar (sanity check) =="
+          unzip -l android/plugin_src/ivory_media/libs/godot-lib.aar
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4

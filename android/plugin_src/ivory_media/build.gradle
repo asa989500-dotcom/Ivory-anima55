@@ -32,9 +32,19 @@ android {
     }
 }
 
+repositories {
+    google()
+    mavenCentral()
+    flatDir {
+        dirs "${projectDir}/../libs"
+    }
+}
+
 dependencies {
     // Supplied by the engine at runtime, so it is compiled against and not
-    // packaged — two copies of the Godot library in one APK will not link.
-    compileOnly fileTree(dir: "${projectDir}/../libs", include: ['*.jar', '*.aar'])
+    // packaged. Declared via flatDir + explicit (name, ext) notation
+    // because Gradle cannot resolve classes out of a raw .aar through
+    // fileTree/compileOnly.
+    compileOnly(name: 'godot-lib', ext: 'aar')
     compileOnly 'androidx.annotation:annotation:1.7.1'
 }
